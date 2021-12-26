@@ -11,6 +11,7 @@ import openfl.events.Event;
 import sys.FileSystem;
 import lime.app.Application;
 import lime.system.System;
+import android.*;//Testing
 
 class Main extends Sprite
 {
@@ -40,7 +41,6 @@ class Main extends Sprite
         } 
         else 
         {
-            #if mobile
             if (FileSystem.exists("/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/")) 
             {
                 dataPath = "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/";
@@ -49,10 +49,9 @@ class Main extends Sprite
             {
                 Application.current.window.alert("couldn't find directory: " + "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/" + "\n" + "try creating it and copying assets/assets, assets/mods from apk to it","an ERROR occured");
                 dataPath = System.applicationStorageDirectory;
+                AndroidTools.requestPermission(Permissions.READ_EXTERNAL_STORAGE);
+                AndroidTools.getGrantedPermissions(Permissions.READ_EXTERNAL_STORAGE));
             }
-            #else
-                dataPath = "";
-            #end
         }
         return dataPath;
     }
