@@ -49,7 +49,7 @@ class Main extends Sprite
             {
                 Application.current.window.alert("couldn't find directory: " + "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/" + "\n" + "try creating it and copying assets/assets, assets/mods from apk to it","an ERROR occured");
                 dataPath = System.applicationStorageDirectory;
-                AndroidTools.getGrantedPermissions(Permissions.READ_EXTERNAL_STORAGE));
+                AndroidTools.getGrantedPermissions(Permissions.READ_EXTERNAL_STORAGE);
             }
         }
         return dataPath;
