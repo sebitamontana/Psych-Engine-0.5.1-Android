@@ -256,7 +256,7 @@ class Paths
 				return File.getContent(Main.getDataPath() + levelPath);
 		}
 		#end
-		return File.getContent(getPath(key, TEXT));
+		return File.getContent(Main.getDataPath() + getPath(key, TEXT));
 	}
 
 	inline static public function font(key:String)
