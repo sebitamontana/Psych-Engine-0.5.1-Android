@@ -20,7 +20,8 @@ using StringTools;
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
-	inline public static var VIDEO_EXT = "mp4";
+	
+	inline public static var VIDEO_EXT = #if android "html" #else "mp4" #end;
 
 	#if MODS_ALLOWED
 	#if (haxe >= "4.0.0")
@@ -256,7 +257,7 @@ class Paths
 				return File.getContent(Main.getDataPath() + levelPath);
 		}
 		#end
-		return File.getContent(Main.getDataPath() + getPath(key, TEXT));
+		return Assets.getText(getPath(key, TEXT));
 	}
 
 	inline static public function font(key:String)

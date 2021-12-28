@@ -3,6 +3,8 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
+#elseif android
+import extension.webview.WebView;
 #else
 import openfl.events.Event;
 import vlc.VlcBitmap;
@@ -16,6 +18,10 @@ class FlxVideo extends FlxBasic {
 	
 	#if desktop
 	public static var vlcBitmap:VlcBitmap;
+	#end
+
+	#if android
+	public static var androidPath:String = "file:///";
 	#end
 
 	public function new(name:String) {
@@ -46,6 +52,12 @@ class FlxVideo extends FlxBasic {
 		});
 		netStream.play(name);
 
+		#elseif android//i think this can run all vidoe formats but ok, it can rum mp4,its ok for now
+
+		WebView.onClose = onClose;
+		WebView.onURLChanging = onURLChanging;
+		WebView.open(androidPath + name, false, null, ['http://exitme(.*)']);
+
 		#elseif desktop
 		// by Polybius, check out PolyEngine! https://github.com/polybiusproxy/PolyEngine
 
@@ -67,7 +79,27 @@ class FlxVideo extends FlxBasic {
 		#end
 	}
 
-	#if desktop
+	#if android
+	override function update(elapsed:Float) {
+		if(FlxG.android.justReleased.BACK) {
+			onClose();
+		}
+		super.update(elapsed);
+	}
+
+	function onClose() {
+		if (finishCallback != null)
+		{
+			finishCallback();
+		}
+	 }
+
+	function onURLChanging(url:String) {
+		if (url == 'http://exitme/') {
+			onClose();
+		}
+	}
+	#elseif desktop
 	function checkFile(fileName:String):String
 	{
 		var pDir = "";

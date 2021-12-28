@@ -8,10 +8,11 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+#if android //only android will use those
 import sys.FileSystem;
 import lime.app.Application;
 import lime.system.System;
-import android.*;//Testing
+#end
 
 class Main extends Sprite
 {
@@ -23,6 +24,7 @@ class Main extends Sprite
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var fpsVar:FPS;
+	private static var dataPath:String = null;//the thing android uses	
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -30,30 +32,6 @@ class Main extends Sprite
 	{
 		Lib.current.addChild(new Main());
 	}
-
-	private static var dataPath:String = null;
-
-    static public function getDataPath():String 
-    {
-        if (dataPath != null && dataPath.length > 0) 
-        {
-            return dataPath;
-        } 
-        else 
-        {
-            if (FileSystem.exists("/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/")) 
-            {
-                dataPath = "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/";
-            } 
-            else 
-            {
-                Application.current.window.alert("couldn't find directory: " + "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/" + "\n" + "try creating it and copying assets/assets, assets/mods from apk to it","an ERROR occured");
-                dataPath = System.applicationStorageDirectory;
-                AndroidTools.requestPermission(Permissions.READ_EXTERNAL_STORAGE);
-            }
-        }
-        return dataPath;
-    }
 
 	public function new()
 	{
@@ -68,6 +46,23 @@ class Main extends Sprite
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 	}
+
+	static public function getDataPath():String 
+    {
+    	#if android
+        if (dataPath != null && dataPath.length > 0) 
+        {
+                return dataPath;
+        } 
+        else 
+        {
+            dataPath = "/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/";         
+        }
+        return dataPath;
+        #else
+        dataPath = "";//to prevent crashing
+        #end
+    }
 
 	private function init(?E:Event):Void
 	{
@@ -96,6 +91,29 @@ class Main extends Sprite
 		#if !debug
 		initialState = TitleState;
 		#end
+
+        #if android
+        if (!FileSystem.exists("/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName")))
+        {
+            Application.current.window.alert("Try creating A folder Called " + Application.current.meta.get("packageName") + " in Android/data/" + "\n" + "Press Ok To Close The App", "Check Directory Error");
+            System.exit(0);//Will close the game
+        }
+        else if (!FileSystem.exists("/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/"))
+        {
+            Application.current.window.alert("Try creating A folder Called Files in Android/data/" + Application.current.meta.get("packageName") + "\n" + "Press Ok To Close The App", "Check Directory Error");
+            System.exit(0);//Will close the game
+        }
+        else if (!FileSystem.exists(Main.getDataPath() + "assets"))
+        {
+            Application.current.window.alert("Try copying assets/assets from apk to " + " /storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/" + "\n" + "Press Ok To Close The App", "Check Directory Error");
+            System.exit(0);//Will close the game
+        }
+        else if (!FileSystem.exists(Main.getDataPath() + "mods"))
+        {
+            Application.current.window.alert("Try copying assets/mods from apk to " + " /storage/emulated/0/Android/data/" + Application.current.meta.get("packageName") + "/files/" + "\n" + "Press Ok To Close The App", "Check Directory Error");
+            System.exit(0);//Will close the game
+        }
+        #end
 
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
