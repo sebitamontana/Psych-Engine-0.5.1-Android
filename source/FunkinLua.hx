@@ -79,7 +79,7 @@ class FunkinLua {
 		// Lua shit
 		set('Function_Stop', "Function_Stop");
 		set('Function_Continue', "Function_Continue");
-		set('luaDebugMode', false);""
+		set('luaDebugMode', false);
 		set('luaDeprecatedWarnings', true);
 		set('inChartEditor', false);
 

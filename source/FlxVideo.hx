@@ -52,7 +52,7 @@ class FlxVideo extends FlxBasic {
 		});
 		netStream.play(name);
 
-		#elseif android//i think this can run all vidoe formats but ok, it can rum mp4,its ok for now
+		#elseif android//i think this can run all vidEO formats but ok, it can ruN mp4,its ok for now
 
 		WebView.onClose = onClose;
 		WebView.onURLChanging = onURLChanging;
