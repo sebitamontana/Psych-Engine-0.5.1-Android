@@ -51,6 +51,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
+import lime.app.Application;
 
 #if sys
 import sys.FileSystem;
