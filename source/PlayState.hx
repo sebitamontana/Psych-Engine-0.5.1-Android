@@ -1315,10 +1315,6 @@ class PlayState extends MusicBeatState
                                        startCountdown();
                                }
                         }
-                        video.setGraphicSize(FlxG.width);
-                        video.updateHitbox();
-                        add(video);
-                        video.play();
                         #else
 			(new FlxVideo(fileName)).finishCallback = function() {
 				remove(bg);
