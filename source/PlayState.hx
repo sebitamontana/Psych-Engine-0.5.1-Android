@@ -1303,6 +1303,18 @@ class PlayState extends MusicBeatState
 			bg.cameras = [camHUD];
 			add(bg);
 
+                        #if android
+			var video = new FlxVideoAndroid(fileName, true);
+                        video.endcallback = () -> {
+                               remove(video);
+                               remove(bg);
+                               if(endingSong) {
+                                       endSong();
+                               } else {
+                                       startCountdown();
+                               }
+                        }
+                        #else
 			(new FlxVideo(fileName)).finishCallback = function() {
 				remove(bg);
 				if(endingSong) {
@@ -1311,9 +1323,15 @@ class PlayState extends MusicBeatState
 					startCountdown();
 				}
 			}
+                        #end
 			return;
 		} else {
-			FlxG.log.warn('Couldnt find video file: ' + fileName);
+			Application.current.window.alert(fileName, 'Couldnt find video file: ');
+                        if(endingSong) {
+		                endSong();
+		        } else {
+				startCountdown();
+			}
 		}
 		#end
 		if(endingSong) {
