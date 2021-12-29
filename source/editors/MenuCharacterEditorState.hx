@@ -278,7 +278,7 @@ class MenuCharacterEditorState extends MusicBeatState
 			FlxG.sound.muteKeys = TitleState.muteKeys;
 			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
-			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			}
@@ -397,7 +397,6 @@ class MenuCharacterEditorState extends MusicBeatState
 		var data:String = Json.stringify(characterFile, "\t");
 		if (data.length > 0)
 		{
-                        #if desktop
 			var splittedImage:Array<String> = imageInputText.text.trim().split('_');
 			var characterName:String = splittedImage[splittedImage.length-1].toLowerCase().replace(' ', '');
 
@@ -406,9 +405,6 @@ class MenuCharacterEditorState extends MusicBeatState
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, characterName + ".json");
-                        #else
-                        openfl.system.System.setClipboard(data.trim());
-                        #end
 		}
 	}
 

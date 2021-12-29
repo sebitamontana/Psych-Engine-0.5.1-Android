@@ -632,7 +632,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 				currentGhosts = 0;
 			}
 
-			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 				transitioning = true;
@@ -724,7 +724,6 @@ class DialogueCharacterEditorState extends MusicBeatState
 		var data:String = Json.stringify(character.jsonFile, "\t");
 		if (data.length > 0)
 		{
-                        #if desktop
 			var splittedImage:Array<String> = imageInputText.text.trim().split('_');
 			var characterName:String = splittedImage[0].toLowerCase().replace(' ', '');
 
@@ -733,9 +732,6 @@ class DialogueCharacterEditorState extends MusicBeatState
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, characterName + ".json");
-                        #else
-                        openfl.system.System.setClipboard(data.trim());
-                        #end
 		}
 	}
 
