@@ -21,7 +21,7 @@ class FlxVideo extends FlxBasic {
 	#end
 
 	#if android
-	public static var androidPath:String = "file:///";
+	public static var androidPath:String = "file://";//Android/Data
 	#end
 
 	public function new(name:String) {
