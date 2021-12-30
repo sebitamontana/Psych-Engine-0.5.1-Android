@@ -136,7 +136,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if MOBILE_CONTROLS_ALLOWED
+        #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B_C);
 		
 		var camcontrol = new FlxCamera();
@@ -163,7 +163,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		if (controls.BACK) {
 			ClientPrefs.saveSettings();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-                        close();
+            FlxG.resetState();
 		}
 
 		if(nextAccept <= 0)
