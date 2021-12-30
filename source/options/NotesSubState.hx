@@ -179,7 +179,7 @@ class NotesSubState extends MusicBeatSubstate
 
 		if (controls.BACK || (changingNote && controls.ACCEPT)) {
 			if(!changingNote) {
-				close();
+				MusicBeatState.switchState(FlxG.state);
 			} else {
 				changeSelection();
 			}
