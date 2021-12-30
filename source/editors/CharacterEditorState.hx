@@ -1146,7 +1146,7 @@ class CharacterEditorState extends MusicBeatState
 				if(FlxG.camera.zoom < 0.1) FlxG.camera.zoom = 0.1;
 			}
 
-			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonUp.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonDown.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonLeft.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonRight.justPressed #end) #if MOBILE_CONTROLS_ALLOWED && _virtualpad.buttonC.justPressed #end)
+			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonUp.justPressed || _virtualpad.buttonDown.justPressed || _virtualpad.buttonLeft.justPressed || _virtualpad.buttonRight.justPressed && _virtualpad.buttonC.justPressed #end)
 			{
 				var addToCam:Float = 500 * elapsed;
 				if (FlxG.keys.pressed.SHIFT)
