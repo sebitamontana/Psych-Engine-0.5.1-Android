@@ -12,6 +12,12 @@ import flash.display.BitmapData;
 import flixel.graphics.FlxGraphic;
 import openfl.utils.ByteArray;
 
+@:keep @:bitmap("assets/preload/images/virtual-input.png")
+class GraphicVirtualInput extends BitmapData {}
+ 
+@:file("assets/preload/images/virtual-input.txt")
+class VirtualInputData extends #if (lime_legacy || nme) ByteArray #else ByteArrayData #end {}
+
 class FlxVirtualPad extends FlxSpriteGroup
 {
 	public var buttonA:FlxButton;
@@ -154,7 +160,17 @@ class FlxVirtualPad extends FlxSpriteGroup
 
 	public static function getVirtualInputFrames():FlxAtlasFrames
 	{
-		return FlxAtlasFrames.fromSpriteSheetPacker(Paths.image('virtual-input', 'preload'), Std.string(Paths.file('images/virtual-input.txt', 'preload')));
+	        #if !web
+		var bitmapData = new GraphicVirtualInput(0, 0);
+		#end
+		
+		#if !web
+		var graphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmapData);
+		return FlxAtlasFrames.fromSpriteSheetPacker(graphic, Std.string(new VirtualInputData()));
+		#else
+		var graphic:FlxGraphic = FlxGraphic.fromAssetKey(Paths.image('virtual-input'));
+		return FlxAtlasFrames.fromSpriteSheetPacker(graphic, Std.string(new VirtualInputData()));
+		#end
 	}
 }
 
