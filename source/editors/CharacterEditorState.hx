@@ -197,7 +197,7 @@ class CharacterEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		reloadCharacterOptions();
 
-		#if mobileC
+		#if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B_C_X_Y_Z);
 
 		var camcontrol = new FlxCamera();
@@ -1122,7 +1122,7 @@ class CharacterEditorState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
 
 		if(!charDropDown.dropPanel.visible) {
-			if (FlxG.keys.justPressed.ESCAPE #if mobileC || _virtualpad.buttonB.justPressed #end) {
+			if (FlxG.keys.justPressed.ESCAPE #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonB.justPressed #end) {
 				if(goToPlayState) {
 					MusicBeatState.switchState(new PlayState());
 				} else {
@@ -1133,20 +1133,20 @@ class CharacterEditorState extends MusicBeatState
 				return;
 			}
 			
-			if (FlxG.keys.justPressed.R #if mobileC || _virtualpad.buttonZ.justPressed #end) {
+			if (FlxG.keys.justPressed.R #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonZ.justPressed #end) {
 				FlxG.camera.zoom = 1;
 			}
 
-			if ((FlxG.keys.pressed.E #if mobileC || _virtualpad.buttonX.justPressed #end) && FlxG.camera.zoom < 3) {
+			if ((FlxG.keys.pressed.E #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonX.justPressed #end) && FlxG.camera.zoom < 3) {
 				FlxG.camera.zoom += elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom > 3) FlxG.camera.zoom = 3;
 			}
-			if ((FlxG.keys.pressed.Q #if mobileC || _virtualpad.buttonY.justPressed #end) && FlxG.camera.zoom > 0.1) {
+			if ((FlxG.keys.pressed.Q #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonY.justPressed #end) && FlxG.camera.zoom > 0.1) {
 				FlxG.camera.zoom -= elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom < 0.1) FlxG.camera.zoom = 0.1;
 			}
 
-			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if mobileC || _virtualpad.buttonUp.justPressed #end #if mobileC || _virtualpad.buttonDown.justPressed #end #if mobileC || _virtualpad.buttonLeft.justPressed #end #if mobileC || _virtualpad.buttonRight.justPressed #end) #if mobileC && _virtualpad.buttonC.justPressed #end)
+			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonUp.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonDown.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonLeft.justPressed #end #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonRight.justPressed #end) #if MOBILE_CONTROLS_ALLOWED && _virtualpad.buttonC.justPressed #end)
 			{
 				var addToCam:Float = 500 * elapsed;
 				if (FlxG.keys.pressed.SHIFT)
@@ -1164,7 +1164,7 @@ class CharacterEditorState extends MusicBeatState
 			}
 
 			if(char.animationsArray.length > 0) {
-				if (FlxG.keys.justPressed.W #if mobileC || _virtualpad.buttonA.justPressed #end)
+				if (FlxG.keys.justPressed.W #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonA.justPressed #end)
 				{
 					curAnim -= 1;
 				}
@@ -1186,7 +1186,7 @@ class CharacterEditorState extends MusicBeatState
 					genBoyOffsets();
 				}
 
-				if (FlxG.keys.justPressed.R #if mobileC || _virtualpad.buttonZ.justPressed #end)
+				if (FlxG.keys.justPressed.R #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonZ.justPressed #end)
 				{
 					char.animationsArray[curAnim].offsets = [0, 0];
 					
@@ -1196,10 +1196,10 @@ class CharacterEditorState extends MusicBeatState
 				}
 
 				var controlArray:Array<Bool> = [
-					FlxG.keys.justPressed.LEFT #if mobileC || _virtualpad.buttonLeft.justPressed #end,
-					FlxG.keys.justPressed.RIGHT #if mobileC || _virtualpad.buttonRight.justPressed #end,
-					FlxG.keys.justPressed.UP #if mobileC || _virtualpad.buttonUp.justPressed #end,
-					FlxG.keys.justPressed.DOWN #if mobileC || _virtualpad.buttonDown.justPressed #end
+					FlxG.keys.justPressed.LEFT #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonLeft.justPressed #end,
+					FlxG.keys.justPressed.RIGHT #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonRight.justPressed #end,
+					FlxG.keys.justPressed.UP #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonUp.justPressed #end,
+					FlxG.keys.justPressed.DOWN #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonDown.justPressed #end
 				];			
 				
 				for (i in 0...controlArray.length) {

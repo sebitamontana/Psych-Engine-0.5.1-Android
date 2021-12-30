@@ -18,7 +18,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
-#if mobileC
+#if MOBILE_CONTROLS_ALLOWED
 import ui.Mobilecontrols;
 #end
 import FunkinLua;
@@ -44,7 +44,7 @@ class EditorPlayState extends MusicBeatState
 	var startOffset:Float = 0;
 	var startPos:Float = 0;
 
-	#if mobileC
+	#if MOBILE_CONTROLS_ALLOWED
 	var mcontrols:Mobilecontrols; 
 	#end
 
@@ -159,7 +159,7 @@ class EditorPlayState extends MusicBeatState
 		add(tipText);
 		FlxG.mouse.visible = false;
 
-		#if mobileC
+		#if MOBILE_CONTROLS_ALLOWED
 			mcontrols = new Mobilecontrols();
 			switch (mcontrols.mode)
 			{

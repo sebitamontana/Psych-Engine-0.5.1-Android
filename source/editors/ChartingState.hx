@@ -389,7 +389,7 @@ class ChartingState extends MusicBeatState
         key_shift.alpha = 0.75;
         add(key_shift);
 
-        #if mobileC
+        #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B);
 		#end
 
@@ -1545,7 +1545,7 @@ class ChartingState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new editors.EditorPlayState(sectionStartTime()));
 			}
 
-			if (FlxG.keys.justPressed.ENTER #if mobileC || _virtualpad.buttonB.justPressed #end)
+			if (FlxG.keys.justPressed.ENTER #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonB.justPressed #end)
 			{
 				autosaveSong();
 				FlxG.mouse.visible = false;
@@ -1570,7 +1570,7 @@ class ChartingState extends MusicBeatState
 			}
 			
 			
-			if (FlxG.keys.justPressed.BACKSPACE #if mobileC || _virtualpad.buttonB.justPressed #end) {
+			if (FlxG.keys.justPressed.BACKSPACE #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonB.justPressed #end) {
 				//if(onMasterEditor) {
 					MusicBeatState.switchState(new editors.MasterEditorMenu());
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
