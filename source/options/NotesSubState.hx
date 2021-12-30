@@ -179,11 +179,7 @@ class NotesSubState extends MusicBeatSubstate
 
 		if (controls.BACK || (changingNote && controls.ACCEPT)) {
 			if(!changingNote) {
-				#if desktop
-			        close();
-                                #else
-                                MusicBeatState.resetState();
-                                #end
+				close();
 			} else {
 				changeSelection();
 			}
