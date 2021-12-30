@@ -23,7 +23,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
-#if android
+#if MOBILE_CONTROLS_ALLOWED
 import flixel.FlxCamera;
 #end
 import Controls;
@@ -136,7 +136,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B_C);
 		
 		var camcontrol = new FlxCamera();
@@ -259,7 +259,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET#if android || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET#if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{

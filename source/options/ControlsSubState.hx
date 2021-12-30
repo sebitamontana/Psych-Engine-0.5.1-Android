@@ -113,7 +113,7 @@ class ControlsSubState extends MusicBeatSubstate {
 		}
 		changeSelection();
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B);
 		#end
 	}

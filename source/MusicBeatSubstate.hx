@@ -5,7 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSubState;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
-#if android
+#if MOBILE_CONTROLS_ALLOWED
 import flixel.input.actions.FlxActionInput;
 import ui.FlxVirtualPad;
 #end
@@ -24,31 +24,14 @@ class MusicBeatSubstate extends FlxSubState
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
 
-	#if android
-	var _virtualpad:FlxVirtualPad;
-	var trackedinputsUI:Array<FlxActionInput> = [];
-	var trackedinputsNOTES:Array<FlxActionInput> = [];
-	#end
-
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	override function update(elapsed:Float)
-	{
-		//everyStep();
-		var oldStep:Int = curStep;
+	#if MOBILE_CONTROLS_ALLOWED
+	var _virtualpad:FlxVirtualPad;
+	var trackedinputsUI:Array<FlxActionInput> = [];
+	var trackedinputsNOTES:Array<FlxActionInput> = [];
 
-		updateCurStep();
-		curBeat = Math.floor(curStep / 4);
-
-		if (oldStep != curStep && curStep > 0)
-			stepHit();
-
-
-		super.update(elapsed);
-	}
-
-	#if android
 	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
 		_virtualpad = new FlxVirtualPad(DPad, Action);
 		_virtualpad.alpha = 0.75;
@@ -66,7 +49,22 @@ class MusicBeatSubstate extends FlxSubState
 	}
 	#else
 	public function addVirtualPad(?DPad, ?Action){};
-	#end	
+	#end
+
+	override function update(elapsed:Float)
+	{
+		//everyStep();
+		var oldStep:Int = curStep;
+
+		updateCurStep();
+		curBeat = Math.floor(curStep / 4);
+
+		if (oldStep != curStep && curStep > 0)
+			stepHit();
+
+
+		super.update(elapsed);
+	}	
 
 	private function updateCurStep():Void
 	{

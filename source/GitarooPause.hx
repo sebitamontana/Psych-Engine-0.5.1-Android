@@ -47,7 +47,7 @@ class GitarooPause extends MusicBeatState
 
 		changeThing();
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(LEFT_RIGHT, A_B);
                 #end
 

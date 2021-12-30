@@ -52,7 +52,7 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import lime.app.Application;
-#if android
+#if MOBILE_CONTROLS_ALLOWED
 import ui.Mobilecontrols;
 #end
 
@@ -249,7 +249,7 @@ class PlayState extends MusicBeatState
 	var detailsPausedText:String = "";
 	#end
 
-        #if android
+        #if MOBILE_CONTROLS_ALLOWED
 	var mcontrols:Mobilecontrols; 
 	#end
 
@@ -1041,7 +1041,7 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 			mcontrols = new Mobilecontrols();
 			switch (mcontrols.mode)
 			{
@@ -1335,7 +1335,7 @@ class PlayState extends MusicBeatState
 			bg.cameras = [camHUD];
 			add(bg);
 
-                        #if android
+                        #if MOBILE_CONTROLS_ALLOWED
 			var video = new FlxVideoAndroid(fileName, true);
                         video.endcallback = () -> {
                                remove(video);
@@ -1521,7 +1521,7 @@ class PlayState extends MusicBeatState
 		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if(ret != FunkinLua.Function_Stop) {
-                        #if android
+                        #if MOBILE_CONTROLS_ALLOWED
 		        mcontrols.visible = true;
 		        #end
 			generateStaticArrows(0);
@@ -2244,7 +2244,7 @@ class PlayState extends MusicBeatState
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE#if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+		if (controls.PAUSE#if MOBILE_CONTROLS_ALLOWED || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', []);
 			if(ret != FunkinLua.Function_Stop) {
@@ -3138,7 +3138,7 @@ class PlayState extends MusicBeatState
 
 		deathCounter = 0;
 		seenCutscene = false;
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		mcontrols.visible = false;
 		#end
 

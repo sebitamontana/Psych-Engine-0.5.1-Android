@@ -70,7 +70,7 @@ class AchievementsMenuState extends MusicBeatState
 		add(descText);
 		changeSelection();
 
-                #if android
+        #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(UP_DOWN, B);
 		#end
 

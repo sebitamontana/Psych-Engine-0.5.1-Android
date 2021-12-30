@@ -290,7 +290,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			bgFade.alpha += 0.5 * elapsed;
 			if(bgFade.alpha > 0.5) bgFade.alpha = 0.5;
 
-                        #if android
+                        #if MOBILE_CONTROLS_ALLOWED
 	                var justTouched:Bool = false;
 
 	                for (touch in FlxG.touches.list)
@@ -303,7 +303,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	                }
 	                #end
 
-		             if(PlayerSettings.player1.controls.ACCEPT#if android || justTouched #end) {
+		             if(PlayerSettings.player1.controls.ACCEPT#if MOBILE_CONTROLS_ALLOWED || justTouched #end) {
 				if(!daText.finishedText) {
 					if(daText != null) {
 						daText.killTheTimer();

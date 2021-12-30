@@ -52,7 +52,7 @@
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS ON TITLE SCREEN -->
-        <define name="MOBILE_CONTROLS" if="mobile"/> <!--Fuck you stupid controls code -->
+    <define name="MOBILE_CONTROLS_ALLOWED" if="mobile"/> <!--Fuck you stupid controls code -->
 
 	<!-- DONT ENABLE THIS -->
 	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
@@ -127,12 +127,12 @@
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
-        <haxelib name="extension-webm" if="VIDEOS_ALLOWED android"/>
+    <haxelib name="extension-webm" if="VIDEOS_ALLOWED android"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
-        <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-        <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
-        <config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
+    <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
+    <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
+    <config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->

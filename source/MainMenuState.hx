@@ -151,7 +151,7 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(UP_DOWN, A_B_7);
 		#end
 
@@ -253,7 +253,7 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			else if (FlxG.keys.anyJustPressed(debugKeys)#if android || _virtualpad.button7.justPressed #end)
+			else if (FlxG.keys.anyJustPressed(debugKeys)#if MOBILE_CONTROLS_ALLOWED || _virtualpad.button7.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());

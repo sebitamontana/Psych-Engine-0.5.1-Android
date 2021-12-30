@@ -8,7 +8,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
-#if android //only android will use those
+#if MOBILE_CONTROLS_ALLOWED //only android will use those
 import sys.FileSystem;
 import lime.app.Application;
 import lime.system.System;
@@ -49,7 +49,7 @@ class Main extends Sprite
 
 	static public function getDataPath():String 
     {
-    	#if android
+    	#if MOBILE_CONTROLS_ALLOWED
         if (dataPath != null && dataPath.length > 0) 
         {
                 return dataPath;
@@ -92,7 +92,7 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 
-        #if android
+        #if MOBILE_CONTROLS_ALLOWED
         if (!FileSystem.exists("/storage/emulated/0/Android/data/" + Application.current.meta.get("packageName")))
         {
             Application.current.window.alert("Try creating A folder Called " + Application.current.meta.get("packageName") + " in Android/data/" + "\n" + "Press Ok To Close The App", "Check Directory Error");

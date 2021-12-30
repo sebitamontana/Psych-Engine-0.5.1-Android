@@ -2,7 +2,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxColor;
-#if android
+#if MOBILE_CONTROLS_ALLOWED
 import flixel.FlxCamera;
 #end
 
@@ -72,7 +72,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		add(noText);
 		updateOptions();
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(LEFT_RIGHT, A_B);
 		
 		var camcontrol = new FlxCamera();

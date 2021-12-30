@@ -149,7 +149,7 @@ class CustomControlsState extends MusicBeatSubstate
 		super.update(elapsed);
 		SpamCheck();
 
-		#if android
+		#if MOBILE_CONTROLS_ALLOWED
 		var androidback:Bool = FlxG.android.justReleased.BACK;
 		#else
 		var androidback:Bool = false;

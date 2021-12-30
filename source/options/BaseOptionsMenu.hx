@@ -126,7 +126,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(FULL, A_B_C);
 		#end
 	}
@@ -248,7 +248,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET#if android || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET#if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{

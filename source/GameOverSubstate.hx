@@ -9,7 +9,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-#if android
+#if MOBILE_CONTROLS_ALLOWED
 import flixel.FlxCamera;
 #end
 
@@ -74,7 +74,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		camFollowPos.setPosition(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2));
 		add(camFollowPos);
 
-                #if android
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(NONE, A_B);
 		
 		var camcontrol = new FlxCamera();
