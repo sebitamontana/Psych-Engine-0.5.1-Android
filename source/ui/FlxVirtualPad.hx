@@ -152,6 +152,10 @@ class FlxVirtualPad extends FlxSpriteGroup
 		button.immovable = true;
 		button.scrollFactor.set();
 
+	        #if FLX_DEBUG
+		button.ignoreDrawDebug = true;
+		#end
+
 		if (OnClick != null)
 			button.onDown.callback = OnClick;
 
