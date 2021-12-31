@@ -87,7 +87,7 @@ class OptionsState extends MusicBeatState
 
 		changeSelection();
 
-        #if MOBILE_CONTROLS_ALLOWED
+                #if MOBILE_CONTROLS_ALLOWED
 		addVirtualPad(UP_DOWN, A_B);
 		#end
 
@@ -96,7 +96,6 @@ class OptionsState extends MusicBeatState
 
 	override function closeSubState() {
 		super.closeSubState();
-		ClientPrefs.saveSettings();
 	}
 
 	override function update(elapsed:Float) {
