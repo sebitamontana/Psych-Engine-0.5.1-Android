@@ -1335,8 +1335,9 @@ class PlayState extends MusicBeatState
 			bg.cameras = [camHUD];
 			add(bg);
 
-                        #if MOBILE_CONTROLS_ALLOWED
-			var video = new FlxVideoAndroid(fileName, true);
+                        #if android
+			var video = new WebmFlxVideo();
+                        video.playVideo(fileName, true);
                         video.endcallback = () -> {
                                remove(video);
                                remove(bg);
@@ -1346,10 +1347,7 @@ class PlayState extends MusicBeatState
                                        startCountdown();
                                }
                         }
-                        video.setGraphicSize(FlxG.width);
-                        video.updateHitbox();
                         add(video);
-                        video.play();
                         #else
 			(new FlxVideo(fileName)).finishCallback = function() {
 				remove(bg);
