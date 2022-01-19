@@ -1545,7 +1545,7 @@ class ChartingState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new editors.EditorPlayState(sectionStartTime()));
 			}
 
-			if (FlxG.keys.justPressed.ENTER #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonB.justPressed #end)
+			if (FlxG.keys.justPressed.ENTER #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonA.justPressed #end)
 			{
 				autosaveSong();
 				FlxG.mouse.visible = false;
