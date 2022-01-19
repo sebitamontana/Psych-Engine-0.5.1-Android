@@ -62,13 +62,14 @@ jobs:
           haxelib git polymod https://github.com/MasterEric/polymod.git --quiet
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/Sirox228/linc_luajit.git --quiet
+          haxelib git AndroidTools https://github.com/Sirox228/AndroidTools.git --quiet
           haxelib git extension-webm https://github.com/Sirox228/extension-webm.git --quiet      
           haxelib list
           
       - name: Build Log
         run: |
           haxelib run lime setup android
-          haxelib run lime build android -final
+          haxelib run lime build android -release
           
       - uses: actions/upload-artifact@v2
         with:
