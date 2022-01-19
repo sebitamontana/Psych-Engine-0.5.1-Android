@@ -116,12 +116,12 @@ class Main extends Sprite
                         }
                         else if (!FileSystem.exists(Main.getDataPath() + "assets"))
                         {
-                                Application.current.window.alert("Try copying assets/assets from apk to" + Application.current.meta.get("packageName") + "In your internal storage createDirectory" + "\n" + "Press Ok To Close The App", "Instructions");
+                                Application.current.window.alert("Try copying assets/assets from apk to" + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
                         }
                         else if (!FileSystem.exists(Main.getDataPath() + "mods"))
                         {
-                                Application.current.window.alert("Try copying assets/mods from apk to " + Application.current.meta.get("packageName") + "In your internal storage createDirectory" + "\n" + "Press Ok To Close The App", "Instructions");
+                                Application.current.window.alert("Try copying assets/mods from apk to " + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
                         }
                 }
