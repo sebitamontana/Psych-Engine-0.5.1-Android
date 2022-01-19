@@ -71,7 +71,8 @@ jobs:
           haxelib run lime setup android
           haxelib run lime build android -release
           
-      - uses: actions/upload-artifact@v2
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: Android Build
           path: export/release/android/bin/app/build/outputs/apk/debug
