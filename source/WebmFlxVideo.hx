@@ -1,5 +1,7 @@
 package;
 
+//Original author: Sirox
+//The modifications: Saw
 import flixel.system.FlxSound;
 import flixel.FlxCamera;
 import flixel.FlxSprite;
