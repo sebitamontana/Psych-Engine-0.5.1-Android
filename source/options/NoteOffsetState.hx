@@ -47,11 +47,11 @@ class NoteOffsetState extends MusicBeatState
 		// Cameras
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
+                camControls = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
-		camOther.bgColor.alpha = 0;
-                camControls = new FlxCamera();
                 camControls.bgColor.alpha = 0;
+		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
@@ -201,7 +201,7 @@ class NoteOffsetState extends MusicBeatState
 		FlxG.sound.playMusic(Paths.music('offsetSong'), 1, true);
 
                 #if MOBILE_CONTROLS_ALLOWED
-		addVirtualPad(FULL, A_B);
+		addVirtualPad(FULL, A_B_C);
                 _virtualpad.cameras = [camControls];
                 #end
 
