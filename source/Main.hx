@@ -110,7 +110,7 @@ class Main extends Sprite
 		        } else {
                         	Application.current.window.alert("game can't run without storage permissions please grant them in app settings","Permissions");
 		        }
-                {
+                }
                 if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName"))) {
                         FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName"));
                 } 
