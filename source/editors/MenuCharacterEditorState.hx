@@ -406,7 +406,9 @@ class MenuCharacterEditorState extends MusicBeatState
 		var data:String = Json.stringify(characterFile, "\t");
 		if (data.length > 0)
 		{
-			#if desktop
+			#if android
+                        openfl.system.System.setClipboard(data.trim());
+			#else
 			var splittedImage:Array<String> = imageInputText.text.trim().split('_');
 			var characterName:String = splittedImage[splittedImage.length-1].toLowerCase().replace(' ', '');
 
@@ -415,8 +417,6 @@ class MenuCharacterEditorState extends MusicBeatState
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, characterName + ".json");			
-            #else
-            openfl.system.System.setClipboard(data.trim());
 			#end
 		}
 	}
