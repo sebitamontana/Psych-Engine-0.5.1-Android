@@ -250,7 +250,7 @@ class WeekEditorState extends MusicBeatState
 		};
 
 		weekBeforeInputText = new FlxUIInputText(10, lockedCheckbox.y + 55, 100, '', 8);
-                weekBeforenputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
+                weekBeforeInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		blockPressWhileTypingOn.push(weekBeforeInputText);
 
 		difficultiesInputText = new FlxUIInputText(10, weekBeforeInputText.y + 60, 200, '', 8);
