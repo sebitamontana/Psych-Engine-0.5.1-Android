@@ -80,7 +80,7 @@ class MenuCharacterEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		updateCharTypeBox();
 
-		#if MOBILE_CONTROLS_ALLOWED
+		#if android
 		addVirtualPad(FULL, NONE);
 		#end
 
@@ -285,7 +285,7 @@ class MenuCharacterEditorState extends MusicBeatState
 			FlxG.sound.muteKeys = TitleState.muteKeys;
 			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
-			if(FlxG.keys.justPressed.ESCAPE#if MOBILE_CONTROLS_ALLOWED || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			}
@@ -293,19 +293,19 @@ class MenuCharacterEditorState extends MusicBeatState
 			var shiftMult:Int = 1;
 			if(FlxG.keys.pressed.SHIFT) shiftMult = 10;
 
-			if(FlxG.keys.justPressed.LEFT #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonLeft.justPressed #end) {
+			if(FlxG.keys.justPressed.LEFT #if android || _virtualpad.buttonLeft.justPressed #end) {
 				characterFile.position[0] += shiftMult;
 				updateOffset();
 			}
-			if(FlxG.keys.justPressed.RIGHT #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonRight.justPressed #end) {
+			if(FlxG.keys.justPressed.RIGHT #if android || _virtualpad.buttonRight.justPressed #end) {
 				characterFile.position[0] -= shiftMult;
 				updateOffset();
 			}
-			if(FlxG.keys.justPressed.UP #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonUp.justPressed #end) {
+			if(FlxG.keys.justPressed.UP #if android || _virtualpad.buttonUp.justPressed #end) {
 				characterFile.position[1] += shiftMult;
 				updateOffset();
 			}
-			if(FlxG.keys.justPressed.DOWN #if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonDown.justPressed #end) {
+			if(FlxG.keys.justPressed.DOWN #if android || _virtualpad.buttonDown.justPressed #end) {
 				characterFile.position[1] -= shiftMult;
 				updateOffset();
 			}

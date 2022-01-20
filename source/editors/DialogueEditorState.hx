@@ -337,7 +337,7 @@ class DialogueEditorState extends MusicBeatState
 			if(FlxG.keys.justPressed.SPACE) {
 				reloadText(speedStepper.value);
 			}
-			if(FlxG.keys.justPressed.ESCAPE#if MOBILE_CONTROLS_ALLOWED || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 				transitioning = true;

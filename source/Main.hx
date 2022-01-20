@@ -60,8 +60,8 @@ class Main extends Sprite
                         return androidDir;
                 } 
                 else 
-                {
-                        androidDir = storagePath + "/" + Application.current.meta.get("packageName") + "/";         
+                { 
+                        androidDir = storagePath + "/" + Application.current.meta.get("packageName") + "/app-files/";
                 }
                 return androidDir;
                 #else
@@ -102,25 +102,23 @@ class Main extends Sprite
 		    AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
 		}  
 
-                var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();              
-                if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) 
-                {
-                        Application.current.window.alert("Game Can't Run Without Storage Permissions, Please Grant Them In App Settings","Permissions");
-	                System.exit(0);
-                }
-                else
-                {
-                        if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName")))
-                        {
+                var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();    
+
+                if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) {
+                	if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
+                        	Application.current.window.alert("If you accepted the permisions for storage good you can continue if not the game can't run without storage permissions please grant them in app settings","Permissions");
+		        } else {
+                        	Application.current.window.alert("game can't run without storage permissions please grant them in app settings","Permissions");
+		        }
+                } else {
+                        if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName"))) {
                                 FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName"));
-                        }
-                        else if (!FileSystem.exists(Main.getDataPath() + "assets"))
-                        {
+                        } else if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName") + '/app-files')) {
+                                FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName") + '/app-files');
+                        } else if (!FileSystem.exists(Main.getDataPath() + "assets")) {
                                 Application.current.window.alert("Try copying assets/assets from apk to" + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
-                        }
-                        else if (!FileSystem.exists(Main.getDataPath() + "mods"))
-                        {
+                        } else if (!FileSystem.exists(Main.getDataPath() + "mods")) {
                                 Application.current.window.alert("Try copying assets/mods from apk to " + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
                         }

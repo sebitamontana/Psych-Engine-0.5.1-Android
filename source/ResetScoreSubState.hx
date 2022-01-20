@@ -2,7 +2,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxColor;
-#if MOBILE_CONTROLS_ALLOWED
+#if android
 import flixel.FlxCamera;
 #end
 
@@ -72,7 +72,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		add(noText);
 		updateOptions();
 
-                #if MOBILE_CONTROLS_ALLOWED
+                #if android
 		addVirtualPad(LEFT_RIGHT, A_B);
 		
 		var camcontrol = new FlxCamera();
@@ -100,7 +100,11 @@ class ResetScoreSubState extends MusicBeatSubstate
 		}
 		if(controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
-			MusicBeatState.switchState(FlxG.state);
+			#if android
+			MusicBeatState.resetState();
+			#else
+			close();
+			#end
 		} else if(controls.ACCEPT) {
 			if(onYes) {
 				if(week == -1) {
@@ -110,7 +114,11 @@ class ResetScoreSubState extends MusicBeatSubstate
 				}
 			}
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
-			MusicBeatState.switchState(FlxG.state);
+            #if android
+			MusicBeatState.resetState();
+			#else
+			close();
+			#end
 		}
 		super.update(elapsed);
 	}

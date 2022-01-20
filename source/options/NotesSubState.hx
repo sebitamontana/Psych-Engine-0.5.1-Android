@@ -92,7 +92,7 @@ class NotesSubState extends MusicBeatSubstate
 
 		changeSelection();
 
-        #if MOBILE_CONTROLS_ALLOWED
+        #if android
 		addVirtualPad(FULL, A_B_C);
 		#end
 	}
@@ -148,7 +148,7 @@ class NotesSubState extends MusicBeatSubstate
 				changeType(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if(controls.RESET#if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonC.justPressed #end) {
+			if(controls.RESET#if android || _virtualpad.buttonC.justPressed #end) {
 				for (i in 0...3) {
 					resetValue(curSelected, i);
 				}
@@ -180,7 +180,11 @@ class NotesSubState extends MusicBeatSubstate
 		if (controls.BACK || (changingNote && controls.ACCEPT)) {
 			if(!changingNote) {
                                 ClientPrefs.saveSettings();
-				MusicBeatState.switchState(FlxG.state);
+				#if android
+			MusicBeatState.resetState();
+			#else
+			close();
+			#end
 			} else {
 				changeSelection();
 			}

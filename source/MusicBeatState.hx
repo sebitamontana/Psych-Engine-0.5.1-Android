@@ -13,7 +13,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxBasic;
-#if MOBILE_CONTROLS_ALLOWED
+#if android
 import flixel.input.actions.FlxActionInput;
 import ui.FlxVirtualPad;
 #end
@@ -30,7 +30,7 @@ class MusicBeatState extends FlxUIState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	#if MOBILE_CONTROLS_ALLOWED
+	#if android
 	var _virtualpad:FlxVirtualPad;
 	var trackedinputsUI:Array<FlxActionInput> = [];
 	var trackedinputsNOTES:Array<FlxActionInput> = [];

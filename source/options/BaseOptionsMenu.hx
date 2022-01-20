@@ -126,7 +126,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if MOBILE_CONTROLS_ALLOWED
+                #if android
 		addVirtualPad(FULL, A_B_C);
 		#end
 	}
@@ -153,7 +153,11 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
                         ClientPrefs.saveSettings();
-			MusicBeatState.switchState(FlxG.state);
+			#if android
+			MusicBeatState.resetState();
+			#else
+			close();
+			#end
 		}
 
 		if(nextAccept <= 0)
@@ -245,7 +249,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET#if MOBILE_CONTROLS_ALLOWED || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET#if android || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{

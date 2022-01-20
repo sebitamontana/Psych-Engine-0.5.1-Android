@@ -10,7 +10,7 @@ import flixel.input.actions.FlxActionSet;
 import flixel.input.gamepad.FlxGamepadButton;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
-#if MOBILE_CONTROLS_ALLOWED
+#if android
 import flixel.group.FlxGroup;
 import ui.Hitbox;
 import ui.FlxVirtualPad;
@@ -385,7 +385,7 @@ class Controls extends FlxActionSet
 	}
 	#end
 
-	#if MOBILE_CONTROLS_ALLOWED
+	#if android
 	public var trackedinputsUI:Array<FlxActionInput> = [];
 	public var trackedinputsNOTES:Array<FlxActionInput> = [];	
 
