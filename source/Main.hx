@@ -106,19 +106,22 @@ class Main extends Sprite
 
                 if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) {
                 	if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
-                        	Application.current.window.alert("If you accepted the permisions for storage good you can continue if not the game can't run without storage permissions please grant them in app settings","Permissions");
+                        	Application.current.window.alert("If you accepted the permisions for storage good, you can continue, if you not the game can't run without storage permissions please grant them in app settings","Permissions");
 		        } else {
                         	Application.current.window.alert("game can't run without storage permissions please grant them in app settings","Permissions");
 		        }
                 } else {
                         if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName"))) {
                                 FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName"));
-                        } else if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName") + '/app-files')) {
+                        } 
+                        if (!FileSystem.exists(storagePath + "/" + Application.current.meta.get("packageName") + '/app-files')) {
                                 FileSystem.createDirectory(storagePath + "/" + Application.current.meta.get("packageName") + '/app-files');
-                        } else if (!FileSystem.exists(Main.getDataPath() + "assets")) {
+                        }
+                        if (!FileSystem.exists(Main.getDataPath() + "assets")) {
                                 Application.current.window.alert("Try copying assets/assets from apk to" + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
-                        } else if (!FileSystem.exists(Main.getDataPath() + "mods")) {
+                        }
+                        if (!FileSystem.exists(Main.getDataPath() + "mods")) {
                                 Application.current.window.alert("Try copying assets/mods from apk to " + Application.current.meta.get("packageName") + " In your internal storage" + "\n" + "Press Ok To Close The App", "Instructions");
                                 System.exit(0);//Will close the game
                         }
