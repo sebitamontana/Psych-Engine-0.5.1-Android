@@ -146,6 +146,10 @@ class DialogueCharacterEditorState extends MusicBeatState
 		addEditorBox();
 		FlxG.mouse.visible = true;
 		updateCharTypeBox();
+
+                #if android
+		addVirtualPad(FULL, A_B_X_Y);
+		#end
 		
 		super.create();
 	}
@@ -564,6 +568,34 @@ class DialogueCharacterEditorState extends MusicBeatState
 					FlxG.keys.justPressed.RIGHT #if android || _virtualpad.buttonRight.justPressed #end,
 					FlxG.keys.justPressed.DOWN #if android || _virtualpad.buttonDown.justPressed #end
 				];
+                                #if android
+                                if (_virtualpad.buttonA.justPressed)
+                                {
+				for (i in 0...controlArrayLoop.length) {
+					if(controlArrayLoop[i]) {
+						if(i % 2 == 1) {
+							animShit.loop_offsets[1] += offsetAdd * negaMult[i];
+						} else {
+							animShit.loop_offsets[0] += offsetAdd * negaMult[i];
+						}
+						moved = true;
+					}
+				}
+                                }
+                                else
+                                {
+				for (i in 0...controlArrayIdle.length) {
+					if(controlArrayIdle[i]) {
+						if(i % 2 == 1) {
+							animShit.idle_offsets[1] += offsetAdd * negaMult[i];
+						} else {
+							animShit.idle_offsets[0] += offsetAdd * negaMult[i];
+						}
+						moved = true;
+					}
+				}
+                                }
+                                #else
 				for (i in 0...controlArrayLoop.length) {
 					if(controlArrayLoop[i]) {
 						if(i % 2 == 1) {
@@ -584,6 +616,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 						moved = true;
 					}
 				}
+                                #end
 
 				if(moved) {
 					offsetLoopText.text = 'Loop: ' + animShit.loop_offsets;
@@ -739,7 +772,9 @@ class DialogueCharacterEditorState extends MusicBeatState
 		var data:String = Json.stringify(character.jsonFile, "\t");
 		if (data.length > 0)
 		{
-			#if desktop
+			#if android
+                        openfl.system.System.setClipboard(data.trim());
+                        #else
 			var splittedImage:Array<String> = imageInputText.text.trim().split('_');
 			var characterName:String = splittedImage[0].toLowerCase().replace(' ', '');
 
@@ -747,9 +782,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data, characterName + ".json");
-			#else 
-			openfl.system.System.setClipboard(data.trim());
+			_file.save(data, characterName + ".json");			
 			#end
 		}
 	}
