@@ -1302,15 +1302,15 @@ class CharacterEditorState extends MusicBeatState
 
 		if (data.length > 0)
 		{
-			#if desktop
+			#if android
+                        openfl.system.System.setClipboard(data.trim());
+                        #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, daAnim + ".json");
-            #else
-            openfl.system.System.setClipboard(data.trim());
-            #end
+                        #end
 		}
 	}
 
