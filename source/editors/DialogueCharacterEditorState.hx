@@ -148,7 +148,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 		updateCharTypeBox();
 
                 #if android
-		addVirtualPad(FULL, A_B_X_Y);
+		addVirtualPad(FULL, A_B_C);
 		#end
 		
 		super.create();
